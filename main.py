@@ -148,3 +148,38 @@ def main():
         elif choice == '10':
 
             execute_script('IP generator.py')
+            print("\nAvailable themes:")
+
+            for i, theme_name in enumerate(themes.keys(), 1):
+
+                print(f"{i}. {theme_name}")
+
+            theme_choice = input("Choose a theme by number: ").strip()
+
+            theme_names = list(themes.keys())
+
+            try:
+
+                theme_index = int(theme_choice) - 1
+
+                if 0 <= theme_index < len(theme_names):
+
+                    set_theme(theme_names[theme_index])
+
+                    os.system('cls' if os.name == 'nt' else 'clear')
+
+                    display_ascii_art() 
+
+                else:
+
+                    print(f"{get_current_theme()['primary']}Invalid choice. No theme changed.{get_current_theme()['reset']}")
+
+            except ValueError:
+
+                print(f"{get_current_theme()['primary']}Invalid input. Please enter a number.{get_current_theme()['reset']}")
+
+
+
+if __name__ == "__main__":
+
+    main()
